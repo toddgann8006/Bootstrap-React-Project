@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
-import Directory from './components/DirectoryComponent';
+import Main from './components/MainComponent';
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+
+const store = ConfigureStore();
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href="/">NuCamp</NavbarBrand>
+      <Provider store={store}>
+      <BrowserRouter>
+          <div className="App">
+              <Main />
           </div>
-        </Navbar>
-        <Directory />
-      </div>
+      </BrowserRouter>
+  </Provider>
     );
-  }
+  };
 }
 
 export default App;
